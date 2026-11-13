@@ -1,0 +1,4 @@
+export type Finding={title:string;severity:'info'|'low'|'medium'|'high'|'critical';description:string;code_evidence:string;potential_impact:string;recommended_fix:string};
+export type Analysis={id:string;source_hash:string;report_hash:string;created_at:string;report:{overall_risk_level:'low'|'medium'|'high'|'critical'|'unknown';findings:Finding[];limitations:string[]}};
+const base=process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+export async function analyze(input_type:'code'|'sepolia_address', value:string):Promise<Analysis>{const body=input_type==='code'?{input_type,source_code:value}:{input_type,contract_address:value};const r=await fetch(`${base}/api/v1/analyses`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok){const d=await r.json().catch(()=>({}));throw new Error(d.detail||'Analysis request failed.')}return r.json();}

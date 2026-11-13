@@ -148,4 +148,3 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Security issues should follow [SECURITY.
 
 MIT License. See [LICENSE](LICENSE).
 
-

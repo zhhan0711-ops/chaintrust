@@ -1,0 +1,2 @@
+export const registryAddress = process.env.NEXT_PUBLIC_REGISTRY_ADDRESS || '[TO CONFIGURE]';
+export const registryAbi = ['function recordAnalysis(bytes32 sourceRef, bytes32 reportHash) external','function getRecords(bytes32 sourceRef) view returns (tuple(bytes32 sourceRef, bytes32 reportHash, uint256 timestamp, address analyst)[])','event AnalysisRecorded(bytes32 indexed sourceRef, bytes32 indexed reportHash, uint256 timestamp, address analyst)'];

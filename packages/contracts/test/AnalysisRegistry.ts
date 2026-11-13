@@ -1,0 +1,3 @@
+import { expect } from 'chai';
+import { ethers } from 'hardhat';
+describe('AnalysisRegistry',()=>{it('records hashes and analyst',async()=>{const [analyst]=await ethers.getSigners();const r=await ethers.deployContract('AnalysisRegistry');const source=ethers.id('source');const report=ethers.id('report');await r.recordAnalysis(source,report);const entries=await r.getRecords(source);expect(entries).to.have.length(1);expect(entries[0].reportHash).to.equal(report);expect(entries[0].analyst).to.equal(analyst.address);});it('rejects empty references',async()=>{const r=await ethers.deployContract('AnalysisRegistry');await expect(r.recordAnalysis(ethers.ZeroHash,ethers.id('x'))).to.be.revertedWith('hash required');});});
